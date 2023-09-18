@@ -6,12 +6,12 @@ from tempfile import TemporaryDirectory
 from typing import *
 from configparser import ConfigParser
 
-from 888888888888 import *
+from NEW_PROJECT____ import *
 
 
 # =====================================================================================================================
 class Test__888888888888:
-    VICTIM: Type[888888888888] = type("VICTIM", (888888888888,), {})
+    VICTIM: Type[NEW_CLASS____] = type("VICTIM", (NEW_CLASS____,), {})
 
     @classmethod
     def setup_class(cls):
@@ -22,11 +22,11 @@ class Test__888888888888:
         pass
 
     def setup_method(self, method):
-        self.VICTIM = type("VICTIM", (888888888888,), {})
+        self.VICTIM = type("VICTIM", (NEW_CLASS____,), {})
 
     # -----------------------------------------------------------------------------------------------------------------
     def test__ClassMethod_and_obj(self):
-        assert self.VICTIM.get(self.888888888888) == self.888888888888
+        assert True
 
 
 # =====================================================================================================================

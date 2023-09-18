@@ -1,4 +1,4 @@
 echo UPDATE PIP
 
-pip install -U 888888888888
+pip install -U NEW_PROJECT____
 pause

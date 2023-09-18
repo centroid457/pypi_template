@@ -1,4 +1,4 @@
-# 88888888888888888888888
+# NEW_PROJECT____
 Designed to 
 
 ## Features
@@ -19,18 +19,21 @@ pip install 88888888888888888888888
 ```
 
 ## Import
+
 ```python
-from 88888888888888888888888 import *
+from NEW_PROJECT____ import *
 ```
 
 
 ## GUIDE
 
 ### 1. Env
-* 
+*
+
 ```python
-from 88888888888888888888888 import *
+from NEW_PROJECT____ import *
+
 
 class Cls:
-   pass
+    pass
 ```
