@@ -1,6 +1,9 @@
+from setuptools import find_packages
 import pip
 
-pip.main(["install", "--upgrade", "NEW_PROJECT____"])
+for item in find_packages():
+    print(item)
+    pip.main(["install", "--upgrade", item])
 
 
 # EXIT PAUSE ==========================================================================================================
