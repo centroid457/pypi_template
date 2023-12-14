@@ -3,6 +3,9 @@ import pip
 from setuptools import find_packages
 
 
+# TODO: use as main or additional CLI-USER???
+
+
 pip.main(["install", "--upgrade", "pip"])
 
 pip.main(["install", "-r", "requirements.txt"])
