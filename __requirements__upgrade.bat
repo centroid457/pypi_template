@@ -32,5 +32,18 @@ echo _
 echo =====================================================
 echo =====================================================
 echo =====================================================
-echo =============3[FINISH]===============================
+echo =============3[UPDATE PIP REQUIREMENTS__AST]=========
+pip install --upgrade -r requirements__AST.txt || pip3 install --upgrade -r requirements__AST.txt || python -m pip install --upgrade -r requirements__AST.txt || python3 -m pip install --upgrade -r requirements__AST.txt || echo [ERROR] REQUIREMENTS__AST UPDATE
+echo _
+echo _
+echo _
+echo _
+echo _
+echo _
+echo _
+
+echo =====================================================
+echo =====================================================
+echo =====================================================
+echo =============4[FINISH]===============================
 pause
