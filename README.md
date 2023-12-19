@@ -37,3 +37,5 @@ from NEW_PROJECT____ import *
 class Cls:
     pass
 ```
+
+## USAGE EXAMPLES
