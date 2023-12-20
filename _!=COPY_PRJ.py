@@ -9,7 +9,9 @@ path_new = path_cwd.parent.joinpath("!=NewProject")
 shutil.copytree(src=path_cwd, dst=path_new)
 
 def remove_readonly(func, path, _):
-    "Clear the readonly bit and reattempt the removal"
+    """
+    Clear the readonly bit and reattempt the removal
+    """
     os.chmod(path, stat.S_IWRITE)
     func(path)
 
