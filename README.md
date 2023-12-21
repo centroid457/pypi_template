@@ -1,5 +1,6 @@
 # prj_name
-Designed for ...  
+Descr short (git/prg descr).  
+Designed for ....  
 
 
 ## Features

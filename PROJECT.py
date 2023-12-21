@@ -15,8 +15,8 @@ class PROJECT:
         "kw1",
     ]
 
-    DESCRIPTION_SHORT: str = "description about pkg"
-    DESCRIPTION_LONG: str = "Designed for ..."
+    DESCRIPTION_SHORT: str = "descr short (git/prg descr)"
+    DESCRIPTION_LONG: str = "designed for ..."
     FEATURES: List[str] = [
         "feat1",
         "feat2",
