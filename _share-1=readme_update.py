@@ -1,2 +1,2 @@
 from README import Readme
-Readme.update()
+Readme.autogenerate()
