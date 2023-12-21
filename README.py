@@ -8,10 +8,10 @@ from PROJECT import PROJECT
 class Readme:
     # ------------------------------------------------
     FILE_NAME: str = "README.md"
-    file_obj: pathlib.Path = pathlib.Path(FILE_NAME)
+    filepath: pathlib.Path = pathlib.Path(FILE_NAME)
 
-    DIRPATH_EXAMPLES: str = "EXAMPLES"
-    dirpath_obj: pathlib.Path = pathlib.Path(DIRPATH_EXAMPLES)
+    DIR_NAME: str = "EXAMPLES"
+    dirpath: pathlib.Path = pathlib.Path(DIR_NAME)
 
     # ------------------------------------------------
     SEPARATOR_PATTERN = r'(\**\n+)*## USAGE EXAMPLES'
@@ -33,7 +33,7 @@ class Readme:
     # WORK WRITE ------------------------------------------------------------------------------------------------------
     @classmethod
     def file_clear(cls) -> None:
-        cls.file_obj.write_text("")
+        cls.filepath.write_text("")
 
     @classmethod
     def file_append_lines(cls, lines: Optional[Union[str, List[str]]] = None) -> None:
@@ -41,7 +41,7 @@ class Readme:
             lines = ""
         if isinstance(lines, str):
             lines = [lines, ]
-        with cls.file_obj.open("a") as fo_append:
+        with cls.filepath.open("a") as fo_append:
             for lines in lines:
                 fo_append.write(f"{lines}\n")
 
@@ -54,14 +54,24 @@ class Readme:
 
     @classmethod
     def append_main(cls):
+        FEATURES = [
+            f"",
+            f"",
+            f"## Features",
+        ]
+        for num, feature in enumerate(PROJECT.FEATURES, start=1):
+            if isinstance(feature, list):
+                FEATURES.append(f"{num}. {feature[0]}:  ")
+                for block in feature[1:]:
+                    FEATURES.append(f"\t- {block}  ")
+            else:
+                FEATURES.append(f"{num}. {feature}  ")
+
         LINES = [
             f"# {PROJECT.NAME_IMPORT}",
             f"{PROJECT.DESCRIPTION_LONG}  ",
 
-            f"",
-            f"",
-            f"## Features",
-            *[f"{item}. {feature}  " for item, feature in enumerate(PROJECT.FEATURES, start=1)],
+            *FEATURES,
 
             f"",
             f"",
@@ -98,7 +108,7 @@ class Readme:
         cls.file_append_lines(cls.LINES_EXAMPLES_START)
         cls.file_append_lines()
 
-        files = [item for item in cls.dirpath_obj.iterdir() if item.is_file()]
+        files = [item for item in cls.dirpath.iterdir() if item.is_file()]
 
         for index, file in enumerate(files, start=1):
             LINES = [

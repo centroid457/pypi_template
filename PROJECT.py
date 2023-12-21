@@ -19,6 +19,9 @@ class PROJECT:
     DESCRIPTION_LONG: str = "Designed for ..."
     FEATURES: List[str] = [
         "feat1",
+        "feat2",
+        ["feat3", "block1", "block2"],
+        "feat4",
     ]
     WISHES: List[str] = [
         "add ..."
