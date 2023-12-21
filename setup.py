@@ -13,7 +13,7 @@ with open("README.md", "r") as f:
 
 setup(
   version=PROJECT.VERSION,
-  description=PROJECT.DESCRIPTION,
+  description=PROJECT.DESCRIPTION_SHORT,
   keywords=PROJECT.KEYWORDS,
   classifiers=[
     # "Topic :: ________________",

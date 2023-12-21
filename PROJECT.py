@@ -11,16 +11,20 @@ class PROJECT:
     # ------------------------------------------------------
     NAME_INSTALL: str = "prj-name"
     NAME_IMPORT: str = "prj_name"
-
-    DESCRIPTION: str = "description"
     KEYWORDS: List[str] = [
         "kw1",
+    ]
+
+    DESCRIPTION_SHORT: str = "description about pkg"
+    DESCRIPTION_LONG: str = "Designed for ..."
+    FEATURES: List[str] = [
+        "feat1",
     ]
     WISHES: List[str] = [
         "add ..."
     ]
 
-    # CHANGE -----------------------------------------------
+    # NEW VERSION -------------------------------------------
     VERSION: str = "0.0.1"
     NEWS: List[str] = [
         "add ..."

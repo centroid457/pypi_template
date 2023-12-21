@@ -19,7 +19,6 @@ pip install 88888888888888888888888
 ```
 
 ## Import
-
 ```python
 from NEW_PROJECT____ import *
 ```
