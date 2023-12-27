@@ -30,12 +30,10 @@ class History:
     LINE_FILE_FOOTER: str = "```"
     LINE_SEPARATOR_FILE: str = LINE_STARS_FILE_SEPARATOR
 
-    LINES_EXAMPLES_START: List[str] = [
-        f"",
-        f"",
-        LINE_STARS_WRAPPER,
-        f"## USAGE EXAMPLES",
-        f"See tests and sourcecode for other examples.",
+    LINES_HEADER: List[str] = [
+        "Release History",
+        "===============",
+        "",
     ]
 
     # WORK WRITE ------------------------------------------------------------------------------------------------------
@@ -75,11 +73,7 @@ class History:
                 FEATURES.append(f"{num}. {feature}  ")
 
         LINES = [
-            f"# {PROJECT.NAME_IMPORT}",
-            f"{PROJECT.DESCRIPTION_SHORT.capitalize()}.  ",
-            f"{PROJECT.DESCRIPTION_LONG.capitalize()}.  ",
-
-            *FEATURES,
+            f"",
 
             f"",
             f"",
