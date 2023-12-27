@@ -10,8 +10,8 @@ class Readme:
     FILE_NAME: str = "README.md"
     filepath: pathlib.Path = pathlib.Path(FILE_NAME)
 
-    DIR_NAME: str = "EXAMPLES"
-    dirpath: pathlib.Path = pathlib.Path(DIR_NAME)
+    DIRNAME_EXAMPLES: str = "EXAMPLES"
+    dirpath_examples: pathlib.Path = pathlib.Path(DIRNAME_EXAMPLES)
 
     # ------------------------------------------------
     SEPARATOR_PATTERN = r'(\**\n+)*## USAGE EXAMPLES'
@@ -109,7 +109,7 @@ class Readme:
         cls.file_append_lines(cls.LINES_EXAMPLES_START)
         cls.file_append_lines()
 
-        files = [item for item in cls.dirpath.iterdir() if item.is_file()]
+        files = [item for item in cls.dirpath_examples.iterdir() if item.is_file()]
 
         for index, file in enumerate(files, start=1):
             LINES = [
