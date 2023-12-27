@@ -1,2 +1,2 @@
-from README import Readme
+from readme import Readme
 Readme.autogenerate()
