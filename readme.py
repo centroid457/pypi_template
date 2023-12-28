@@ -54,25 +54,25 @@ class Readme:
 
     @classmethod
     def append_main(cls):
-        FEATURES = [
+        features = [
             f"",
             f"",
             f"## Features",
         ]
         for num, feature in enumerate(PROJECT.FEATURES, start=1):
             if isinstance(feature, list):
-                FEATURES.append(f"{num}. {feature[0]}:  ")
+                features.append(f"{num}. {feature[0]}:  ")
                 for block in feature[1:]:
-                    FEATURES.append(f"\t- {block}  ")
+                    features.append(f"\t- {block}  ")
             else:
-                FEATURES.append(f"{num}. {feature}  ")
+                features.append(f"{num}. {feature}  ")
 
-        LINES = [
-            f"# {PROJECT.NAME_IMPORT}",
+        lines = [
+            f"# {PROJECT.NAME_IMPORT} (v{PROJECT.VERSION})",
             f"{PROJECT.DESCRIPTION_SHORT.capitalize()}.  ",
             f"{PROJECT.DESCRIPTION_LONG.capitalize()}.  ",
 
-            *FEATURES,
+            *features,
 
             f"",
             f"",
@@ -99,7 +99,7 @@ class Readme:
             f"from {PROJECT.NAME_IMPORT} import *",
             f"```",
         ]
-        cls.file_append_lines(LINES)
+        cls.file_append_lines(lines)
 
     @classmethod
     def append_examples(cls):
