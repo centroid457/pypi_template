@@ -1,4 +1,4 @@
-# prj_name
+# prj_name (v0.0.1)
 Descr short (git/prg descr).  
 Designed for ....  
 
