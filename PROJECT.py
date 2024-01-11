@@ -19,6 +19,9 @@ class PROJECT:
     DESCRIPTION_SHORT: str = "descr short (git/prg descr)"
 
     # README -----------------------------------------------
+    pass
+
+    # add DOUBLE SPACE at the end of all lines! for correct representation in MD-viewers
     DESCRIPTION_LONG: str = """
 designed for ...
     """
