@@ -23,17 +23,23 @@ class PROJECT:
 designed for ...
     """
     FEATURES: List[str] = [
+        # "feat1",
+        # ["feat2", "block1", "block2"],
+
         "feat1",
         ["feat2", "block1", "block2"],
     ]
 
     # HISTORY -----------------------------------------------
     VERSION: str = "0.0.1"
-    WISHES: List[str] = [
-        "add ..."
+    TODO: List[str] = [
+        "..."
+    ]
+    FIXME: List[str] = [
+        "..."
     ]
     NEWS: List[str] = [
-        "add ..."
+        "..."
     ]
 
 
