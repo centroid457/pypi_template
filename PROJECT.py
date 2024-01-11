@@ -24,12 +24,12 @@ class PROJECT:
         "feat1",
         ["feat2", "block1", "block2"],
     ]
-    WISHES: List[str] = [
-        "add ..."
-    ]
 
     # HISTORY -----------------------------------------------
     VERSION: str = "0.0.1"
+    WISHES: List[str] = [
+        "add ..."
+    ]
     NEWS: List[str] = [
         "add ..."
     ]
