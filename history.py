@@ -48,27 +48,42 @@ class ReleaseFileBase:
         return group
 
 
+# =====================================================================================================================
 class History(ReleaseFileBase):
     # ------------------------------------------------
     FILE_NAME: str = "HISTORY.md"
 
     # ------------------------------------------------
     LINE_SEPARATOR_NEWS: str = "-" * 30
-    PATTERN_SEPARATOR_NEWS = r'#+ NEWS:'
+    PATTERN_NEWS = r'#+ NEWS:\s*(.+)'
+    # PATTERN_NEWS = r'\n((?:\d+\.?){3} \((?:\d{2,4}[/:\s]?){6}\).*)\s*\*{10,}'
 
     LAST_NEWS: str = ""
 
     # PREPARE =========================================================================================================
-    def check_new_release__is_correct(self) -> bool:
-        pattern = r'\n((?:\d+\.?){3}) \((?:\d{2,4}[/:\s]?){6}\)'
-        match = re.search(pattern, self.filepath.read_text())
-        if match and match[1] == PROJECT.VERSION_STR:
-            return False
-        return True
-
     def load_last_news(self) -> None:
-        pass
+        # FIXME:
+        # FIXME:
+        # FIXME:
+        # FIXME:
+        # FIXME:
+        # FIXME:
+        # FIXME:
+        # FIXME:
+        # FIXME:
+        string = self.filepath.read_text()
+        match = re.search(self.PATTERN_NEWS, string)
+        if match:
+            self.LAST_NEWS = match[1]
 
+        # print(f"{string=}")
+        print(f"{self.LAST_NEWS=}")
+
+    def check_new_release__is_correct(self) -> bool:
+        result = not self.LAST_NEWS.startswith(PROJECT.VERSION_STR)
+        return result
+
+    # WORK ============================================================================================================
     def lines_create__news(self) -> List[str]:
         group: List[str] = [
             f"## NEWS:",
@@ -81,11 +96,13 @@ class History(ReleaseFileBase):
         return group
 
     def autogenerate(self) -> None:
+        # PREPARE --------------------------------------
+        self.load_last_news()
         if not self.check_new_release__is_correct():
             msg = f"[ERROR] Incorrect new data (change version/...)"
             raise Exception(msg)
 
-        self.load_last_news()
+        # WRITE ----------------------------------------
         self.file_clear()
         self.append_main()
 
