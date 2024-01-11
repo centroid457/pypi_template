@@ -34,7 +34,8 @@ designed for ...
     ]
 
     # HISTORY -----------------------------------------------
-    VERSION: str = "0.0.1"
+    VERSION: Tuple[int, int, int] = (0, 0, 1)
+    VERSION_STR: str = ".".join(map(str, VERSION))
     TODO: List[str] = [
         "..."
     ]

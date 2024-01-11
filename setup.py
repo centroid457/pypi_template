@@ -12,7 +12,7 @@ with open("README.md", "r") as f:
 # EDIT ================================================================================================================
 
 setup(
-  version=PROJECT.VERSION,
+  version=PROJECT.VERSION_STR,
   description=PROJECT.DESCRIPTION_SHORT,
   keywords=PROJECT.KEYWORDS,
   classifiers=[

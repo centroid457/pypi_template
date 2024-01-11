@@ -70,7 +70,7 @@ class Readme:
 
         # SUMMARY ----------------------------------------------------
         lines = [
-            f"# {PROJECT.NAME_IMPORT} (v{PROJECT.VERSION})",
+            f"# {PROJECT.NAME_IMPORT} (v{PROJECT.VERSION_STR})",
 
             f"",
             f"## DESCRIPTION_SHORT",
