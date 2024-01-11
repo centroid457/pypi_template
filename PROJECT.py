@@ -19,7 +19,9 @@ class PROJECT:
     DESCRIPTION_SHORT: str = "descr short (git/prg descr)"
 
     # README -----------------------------------------------
-    DESCRIPTION_LONG: str = "designed for ..."
+    DESCRIPTION_LONG: str = """
+    designed for ...
+    """
     FEATURES: List[str] = [
         "feat1",
         ["feat2", "block1", "block2"],
