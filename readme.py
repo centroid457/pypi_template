@@ -54,6 +54,7 @@ class Readme:
 
     @classmethod
     def append_main(cls):
+        # FEATURES ----------------------------------------------------
         features = [
             f"",
             f"",
@@ -67,10 +68,17 @@ class Readme:
             else:
                 features.append(f"{num}. {feature}  ")
 
+        # SUMMARY ----------------------------------------------------
         lines = [
             f"# {PROJECT.NAME_IMPORT} (v{PROJECT.VERSION})",
-            f"{PROJECT.DESCRIPTION_SHORT.capitalize()}.  ",
-            f"{PROJECT.DESCRIPTION_LONG.capitalize()}.  ",
+
+            f"",
+            f"## DESCRIPTION_SHORT",
+            f"{PROJECT.DESCRIPTION_SHORT.capitalize().strip()}",
+
+            f"",
+            f"## DESCRIPTION_LONG",
+            f"{PROJECT.DESCRIPTION_LONG.capitalize().strip()}",
 
             *features,
 

@@ -20,7 +20,7 @@ class PROJECT:
 
     # README -----------------------------------------------
     DESCRIPTION_LONG: str = """
-    designed for ...
+designed for ...
     """
     FEATURES: List[str] = [
         "feat1",
