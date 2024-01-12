@@ -174,8 +174,8 @@ class History(ReleaseFileBase):
     FILE_NAME: str = "HISTORY.md"
 
     # ------------------------------------------------
-    PATTERN_SEPARATOR_NEWS = r'#+ NEWS:\s*'
-    PATTERN_NEWS = r'#+ NEWS:\s*(.+)\s*\*{10,}\s*'
+    PATTERN_SEPARATOR_NEWS = r'#+ NEWS\s*'
+    PATTERN_NEWS = r'#+ NEWS\s*(.+)\s*\*{10,}\s*'
     # PATTERN_NEWS = r'\n((?:\d+\.?){3} \((?:\d{2,4}[/:\s]?){6}\).*)\s*\*{10,}'
 
     LAST_NEWS: str = ""
@@ -226,7 +226,7 @@ class History(ReleaseFileBase):
     # WORK ============================================================================================================
     def lines_create__news(self) -> List[str]:
         group: List[str] = [
-            f"## NEWS:",
+            f"## NEWS",
             "",
             f"{PROJECT.VERSION_STR} ({time.strftime("%Y/%m/%d %H:%M:%S")})",
             self.LINE_SEPARATOR_PART,
