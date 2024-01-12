@@ -11,8 +11,6 @@ from NEW_PROJECT____ import *
 
 # =====================================================================================================================
 class Test__888888888888:
-    VICTIM: Type[NEW_CLASS____] = type("VICTIM", (NEW_CLASS____,), {})
-
     @classmethod
     def setup_class(cls):
         pass

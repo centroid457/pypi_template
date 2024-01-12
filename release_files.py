@@ -13,6 +13,7 @@ class ReleaseFileBase:
 
     # ------------------------------------------------
     LINE_SEPARATOR_MAIN: str = "*" * 80
+    LINE_SEPARATOR_PART: str = "-" * 30
 
     @property
     def filepath(self) -> pathlib.Path:
@@ -31,7 +32,7 @@ class ReleaseFileBase:
             for lines in lines:
                 fo_append.write(f"{lines}\n")
 
-    # GROUP ===========================================================================================================
+    # LINES ===========================================================================================================
     def _lines_create__group(self, lines: List[str], title: Optional[str] = None, nums: bool = True) -> List[str]:
         group: List[str] = []
 
@@ -52,6 +53,115 @@ class ReleaseFileBase:
                 group.append(f"{bullet}{line}  ")
         return group
 
+    def autogenerate(self):
+        pass
+
+
+# =====================================================================================================================
+class Readme(ReleaseFileBase):
+    # ------------------------------------------------
+    FILE_NAME: str = "README.md"
+
+    # ------------------------------------------------
+    DIRNAME_EXAMPLES: str = "EXAMPLES"
+    dirpath_examples: pathlib.Path = pathlib.Path(DIRNAME_EXAMPLES)
+
+    SEPARATOR_PATTERN = r'(\**\n+)*## USAGE EXAMPLES'
+
+    LINE_FILE_HEADER: str = "```python"
+    LINE_FILE_FOOTER: str = "```"
+
+    # GENERATE ========================================================================================================
+    def autogenerate(self):
+        self._file_clear()
+        self.append_main()
+        self.append_examples()
+
+    def append_main(self):
+        # FEATURES ----------------------------------------------------
+        features = [
+            f"",
+            f"",
+            f"## Features",
+        ]
+        for num, feature in enumerate(PROJECT.FEATURES, start=1):
+            if isinstance(feature, list):
+                features.append(f"{num}. {feature[0]}:  ")
+                for block in feature[1:]:
+                    features.append(f"\t- {block}  ")
+            else:
+                features.append(f"{num}. {feature}  ")
+
+        # SUMMARY ----------------------------------------------------
+        lines = [
+            f"# {PROJECT.NAME_IMPORT} (v{PROJECT.VERSION_STR})",
+
+            f"",
+            f"## DESCRIPTION_SHORT",
+            f"{PROJECT.DESCRIPTION_SHORT.capitalize().strip()}",
+
+            f"",
+            f"## DESCRIPTION_LONG",
+            f"{PROJECT.DESCRIPTION_LONG.capitalize().strip()}",
+
+            *features,
+
+            f"",
+            f"",
+            self.LINE_SEPARATOR_MAIN,
+            f"## License",
+            f"See the [LICENSE](LICENSE) file for license rights and limitations (MIT).",
+
+            f"",
+            f"",
+            f"## Release history",
+            f"See the [HISTORY.md](HISTORY.md) file for release history.",
+
+            f"",
+            f"",
+            f"## Installation",
+            f"```commandline",
+            f"pip install {PROJECT.NAME_INSTALL}",
+            f"```",
+
+            f"",
+            f"",
+            f"## Import",
+            f"```python",
+            f"from {PROJECT.NAME_IMPORT} import *",
+            f"```",
+        ]
+        self._file_append_lines(lines)
+
+    def append_examples(self):
+        """
+        NOTE: don't skip none-python files! it could be as part of examples! just name it in appropriate way!
+        """
+        LINES_EXAMPLES_START: List[str] = [
+            f"",
+            f"",
+            self.LINE_SEPARATOR_MAIN,
+            f"## USAGE EXAMPLES",
+            f"See tests and sourcecode for other examples.",
+        ]
+        self._file_append_lines(LINES_EXAMPLES_START)
+        self._file_append_lines()
+
+        files = [item for item in self.dirpath_examples.iterdir() if item.is_file()]
+
+        for index, file in enumerate(files, start=1):
+            LINES = [
+                self.LINE_SEPARATOR_PART,
+                f"### {index}. {file.name}",
+                self.LINE_FILE_HEADER,
+                file.read_text().strip(),
+                self.LINE_FILE_FOOTER,
+                f"",
+            ]
+            self._file_append_lines(LINES)
+
+        self._file_append_lines(self.LINE_SEPARATOR_MAIN)
+
 
 # =====================================================================================================================
 class History(ReleaseFileBase):
@@ -59,7 +169,6 @@ class History(ReleaseFileBase):
     FILE_NAME: str = "HISTORY.md"
 
     # ------------------------------------------------
-    LINE_SEPARATOR_NEWS: str = "-" * 30
     PATTERN_SEPARATOR_NEWS = r'#+ NEWS:\s*'
     PATTERN_NEWS = r'#+ NEWS:\s*(.+)\s*\*{10,}\s*'
     # PATTERN_NEWS = r'\n((?:\d+\.?){3} \((?:\d{2,4}[/:\s]?){6}\).*)\s*\*{10,}'
@@ -111,7 +220,7 @@ class History(ReleaseFileBase):
             f"## NEWS:",
             "",
             f"{PROJECT.VERSION_STR} ({time.strftime("%Y/%m/%d %H:%M:%S")})",
-            self.LINE_SEPARATOR_NEWS,
+            self.LINE_SEPARATOR_PART,
         ]
         news_new = self._lines_create__group(PROJECT.NEWS, nums=False)
         group.extend(news_new)
@@ -149,8 +258,14 @@ class History(ReleaseFileBase):
 
 
 # =====================================================================================================================
-if __name__ == '__main__':
+def update():
+    Readme().autogenerate()
     History().autogenerate()
+
+
+# =====================================================================================================================
+if __name__ == '__main__':
+    update()
 
 
 # =====================================================================================================================

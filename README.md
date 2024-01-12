@@ -39,7 +39,7 @@ from prj_name import *
 ## USAGE EXAMPLES
 See tests and sourcecode for other examples.
 
-******************************
+------------------------------
 ### 1. example1.py
 ```python
 from NEW_PROJECT____ import *
@@ -55,7 +55,7 @@ if __name__ == "__main__":
 print(NEW_CLASS____())
 ```
 
-******************************
+------------------------------
 ### 2. example2.py
 ```python
 
