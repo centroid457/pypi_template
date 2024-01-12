@@ -3,6 +3,9 @@ from typing import *
 
 # =====================================================================================================================
 class PROJECT:
+    # AUX --------------------------------------------------
+    _VERSION_TEMPLATE: Tuple[int] = (0, 0, 1)
+
     # AUTHOR -----------------------------------------------
     AUTHOR_NAME: str = "Andrei Starichenko"
     AUTHOR_EMAIL: str = "centroid@mail.ru"
