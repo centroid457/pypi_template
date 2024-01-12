@@ -58,14 +58,14 @@ class ReleaseFileBase:
                 group.append(f"{bullet}{line}  ")
         return group
 
-    def autogenerate(self):
+    def autogenerate(self, project: Optional[Type[PROJECT]] = None) -> None:
         pass
 
 
 # =====================================================================================================================
 class Readme(ReleaseFileBase):
     # ------------------------------------------------
-    FILE_NAME: str = "README.md"
+    FILE_NAME: str = "../README.md"
 
     # ------------------------------------------------
     DIRNAME_EXAMPLES: str = "EXAMPLES"
@@ -77,7 +77,9 @@ class Readme(ReleaseFileBase):
     LINE_FILE_FOOTER: str = "```"
 
     # GENERATE ========================================================================================================
-    def autogenerate(self):
+    def autogenerate(self, project: Optional[Type[PROJECT]] = None) -> None:
+        project = project or PROJECT
+
         self._file_clear()
         self.append_main()
         self.append_examples()
@@ -171,7 +173,7 @@ class Readme(ReleaseFileBase):
 # =====================================================================================================================
 class History(ReleaseFileBase):
     # ------------------------------------------------
-    FILE_NAME: str = "HISTORY.md"
+    FILE_NAME: str = "../HISTORY.md"
 
     # ------------------------------------------------
     PATTERN_SEPARATOR_NEWS = r'#+ NEWS\s*'
@@ -235,7 +237,8 @@ class History(ReleaseFileBase):
         group.extend(news_new)
         return group
 
-    def autogenerate(self) -> None:
+    def autogenerate(self, project: Optional[Type[PROJECT]] = None) -> None:
+        project = project or PROJECT
         # PREPARE --------------------------------------
         self.load_last_news()
         if not self.check_new_release__is_correct():
@@ -267,9 +270,9 @@ class History(ReleaseFileBase):
 
 
 # =====================================================================================================================
-def update():
-    Readme().autogenerate()
-    History().autogenerate()
+def update(project: Optional[Type[PROJECT]] = None):
+    Readme().autogenerate(project)
+    History().autogenerate(project)
 
 
 # =====================================================================================================================

@@ -1,2 +1,4 @@
-from release_files import update
-update()
+from PROJECT import PROJECT
+from pypi_template.RELEASE_FILES import update
+
+update(PROJECT)
