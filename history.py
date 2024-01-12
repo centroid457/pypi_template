@@ -19,10 +19,10 @@ class ReleaseFileBase:
         return pathlib.Path(self.FILE_NAME)
 
     # FILE WRITE ======================================================================================================
-    def file_clear(self) -> None:
+    def _file_clear(self) -> None:
         self.filepath.write_text("")
 
-    def file_append_lines(self, lines: Optional[Union[str, List[str]]] = None) -> None:
+    def _file_append_lines(self, lines: Optional[Union[str, List[str]]] = None) -> None:
         if not lines:
             lines = ""
         if isinstance(lines, str):
@@ -32,19 +32,24 @@ class ReleaseFileBase:
                 fo_append.write(f"{lines}\n")
 
     # GROUP ===========================================================================================================
-    def lines_create__group(self, lines: List[str], title: str = None) -> List[str]:
+    def _lines_create__group(self, lines: List[str], title: Optional[str] = None, nums: bool = True) -> List[str]:
         group: List[str] = []
 
         if title:
             group.append(title.upper())
 
         for num, line in enumerate(lines, start=1):
+            if nums:
+                bullet = f"{num}. "
+            else:
+                bullet = "- "
+
             if isinstance(line, list):
-                group.append(f"{num}. {line[0]}:  ")
+                group.append(f"{bullet}{line[0]}:  ")
                 for block in line[1:]:
                     group.append(f"\t- {block}  ")
             else:
-                group.append(f"{num}. {line}  ")
+                group.append(f"{bullet}{line}  ")
         return group
 
 
@@ -55,74 +60,92 @@ class History(ReleaseFileBase):
 
     # ------------------------------------------------
     LINE_SEPARATOR_NEWS: str = "-" * 30
-    PATTERN_NEWS = r'#+ NEWS:\s*(.+)'
+    PATTERN_SEPARATOR_NEWS = r'#+ NEWS:\s*'
+    PATTERN_NEWS = r'#+ NEWS:\s*(.+)\s*\*{10,}\s*'
     # PATTERN_NEWS = r'\n((?:\d+\.?){3} \((?:\d{2,4}[/:\s]?){6}\).*)\s*\*{10,}'
 
     LAST_NEWS: str = ""
 
     # PREPARE =========================================================================================================
-    def load_last_news(self) -> None:
-        # FIXME:
-        # FIXME:
-        # FIXME:
-        # FIXME:
-        # FIXME:
-        # FIXME:
-        # FIXME:
-        # FIXME:
-        # FIXME:
+    def _load_last_news(self) -> None:
         string = self.filepath.read_text()
-        match = re.search(self.PATTERN_NEWS, string)
-        if match:
-            self.LAST_NEWS = match[1]
+
+        # # VAR 1 --------------------------------
+        # match = re.search(self.PATTERN_NEWS, string)
+        # if match:
+        #     self.LAST_NEWS = match[1]
+        # # VAR 1 --------------------------------
+
+        # VAR 2 --------------------------------
+        splits = re.split(self.PATTERN_SEPARATOR_NEWS, string)
+        if len(splits) > 1:
+            self.LAST_NEWS = splits[-1]
+
+            splits = re.split(r'\s*\*{10,}\s*', self.LAST_NEWS)
+            self.LAST_NEWS = splits[0]
+            # VAR 2 --------------------------------
 
         # print(f"{string=}")
-        print(f"{self.LAST_NEWS=}")
+        # print(f"{self.LAST_NEWS=}")
 
-    def check_new_release__is_correct(self) -> bool:
-        result = not self.LAST_NEWS.startswith(PROJECT.VERSION_STR)
-        return result
+    def _check_new_release__is_correct(self) -> bool:
+        # ----------------------------
+        if self.LAST_NEWS.startswith(f"{PROJECT.VERSION_STR} ("):
+            msg = f"exists_version"
+            print(msg)
+            return False
+
+        # ----------------------------
+        for news_item in PROJECT.NEWS:
+            if re.search(r'- ' + str(news_item) + r'\s*\n', self.LAST_NEWS):
+                msg = f"exists_news"
+                print(msg)
+                return False
+
+        # ----------------------------
+        return True
 
     # WORK ============================================================================================================
-    def lines_create__news(self) -> List[str]:
+    def _lines_create__news(self) -> List[str]:
         group: List[str] = [
             f"## NEWS:",
             "",
             f"{PROJECT.VERSION_STR} ({time.strftime("%Y/%m/%d %H:%M:%S")})",
             self.LINE_SEPARATOR_NEWS,
         ]
-        news_new = self.lines_create__group(PROJECT.NEWS)
+        news_new = self._lines_create__group(PROJECT.NEWS, nums=False)
         group.extend(news_new)
         return group
 
     def autogenerate(self) -> None:
         # PREPARE --------------------------------------
-        self.load_last_news()
-        if not self.check_new_release__is_correct():
+        self._load_last_news()
+        if not self._check_new_release__is_correct():
             msg = f"[ERROR] Incorrect new data (change version/...)"
             raise Exception(msg)
 
         # WRITE ----------------------------------------
-        self.file_clear()
-        self.append_main()
+        self._file_clear()
+        self._append_main()
 
-    def append_main(self):
+    def _append_main(self):
         lines = [
             f"# RELEASE HISTORY",
             f"",
             self.LINE_SEPARATOR_MAIN,
-            *self.lines_create__group(PROJECT.TODO, "## TODO"),
+            *self._lines_create__group(PROJECT.TODO, "## TODO"),
             f"",
             self.LINE_SEPARATOR_MAIN,
-            *self.lines_create__group(PROJECT.FIXME, "## FIXME"),
+            *self._lines_create__group(PROJECT.FIXME, "## FIXME"),
             f"",
             self.LINE_SEPARATOR_MAIN,
-            *self.lines_create__news(),
+            *self._lines_create__news(),
             f"",
             self.LAST_NEWS,
+            f"",
             self.LINE_SEPARATOR_MAIN,
         ]
-        self.file_append_lines(lines)
+        self._file_append_lines(lines)
 
 
 # =====================================================================================================================
