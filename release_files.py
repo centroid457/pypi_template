@@ -7,6 +7,11 @@ from PROJECT import PROJECT
 
 
 # =====================================================================================================================
+class Exx_HistorySameVersionOrNews(Exception):
+    pass
+
+
+# =====================================================================================================================
 class ReleaseFileBase:
     # ------------------------------------------------
     FILE_NAME: str = "FILE.md"
@@ -176,7 +181,7 @@ class History(ReleaseFileBase):
     LAST_NEWS: str = ""
 
     # PREPARE =========================================================================================================
-    def _load_last_news(self) -> None:
+    def load_last_news(self) -> None:
         string = self.filepath.read_text()
 
         # # VAR 1 --------------------------------
@@ -192,12 +197,16 @@ class History(ReleaseFileBase):
 
             splits = re.split(r'\s*\*{10,}\s*', self.LAST_NEWS)
             self.LAST_NEWS = splits[0]
+
+            splits = re.split(r'\s*0\.0\.0 \(', self.LAST_NEWS)
+            self.LAST_NEWS = splits[0]
+
             # VAR 2 --------------------------------
 
         # print(f"{string=}")
         # print(f"{self.LAST_NEWS=}")
 
-    def _check_new_release__is_correct(self) -> bool:
+    def check_new_release__is_correct(self) -> bool:
         # ----------------------------
         if self.LAST_NEWS.startswith(f"{PROJECT.VERSION_STR} ("):
             msg = f"exists_version"
@@ -215,7 +224,7 @@ class History(ReleaseFileBase):
         return True
 
     # WORK ============================================================================================================
-    def _lines_create__news(self) -> List[str]:
+    def lines_create__news(self) -> List[str]:
         group: List[str] = [
             f"## NEWS:",
             "",
@@ -228,16 +237,16 @@ class History(ReleaseFileBase):
 
     def autogenerate(self) -> None:
         # PREPARE --------------------------------------
-        self._load_last_news()
-        if not self._check_new_release__is_correct():
-            msg = f"[ERROR] Incorrect new data (change version/...)"
-            raise Exception(msg)
+        self.load_last_news()
+        if not self.check_new_release__is_correct():
+            msg = f"[ERROR] Incorrect new data (INCREASE VERSION or CHANGE NEWS)"
+            raise Exx_HistorySameVersionOrNews(msg)
 
         # WRITE ----------------------------------------
         self._file_clear()
-        self._append_main()
+        self.append_main()
 
-    def _append_main(self):
+    def append_main(self):
         lines = [
             f"# RELEASE HISTORY",
             f"",
@@ -248,7 +257,7 @@ class History(ReleaseFileBase):
             *self._lines_create__group(PROJECT.FIXME, "## FIXME"),
             f"",
             self.LINE_SEPARATOR_MAIN,
-            *self._lines_create__news(),
+            *self.lines_create__news(),
             f"",
             self.LAST_NEWS,
             f"",
