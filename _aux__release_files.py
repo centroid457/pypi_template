@@ -65,7 +65,7 @@ class ReleaseFileBase:
 # =====================================================================================================================
 class Readme(ReleaseFileBase):
     # ------------------------------------------------
-    FILE_NAME: str = "../README.md"
+    FILE_NAME: str = "README.md"
 
     # ------------------------------------------------
     DIRNAME_EXAMPLES: str = "EXAMPLES"
@@ -173,7 +173,7 @@ class Readme(ReleaseFileBase):
 # =====================================================================================================================
 class History(ReleaseFileBase):
     # ------------------------------------------------
-    FILE_NAME: str = "../HISTORY.md"
+    FILE_NAME: str = "HISTORY.md"
 
     # ------------------------------------------------
     PATTERN_SEPARATOR_NEWS = r'#+ NEWS\s*'

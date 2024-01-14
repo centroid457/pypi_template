@@ -6,7 +6,7 @@ from tempfile import TemporaryDirectory
 from typing import *
 from configparser import ConfigParser
 
-from pypi_template import *
+from PRJ_NEW__ import *
 
 
 # =====================================================================================================================
