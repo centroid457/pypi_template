@@ -4,7 +4,7 @@ from typing import *
 # =====================================================================================================================
 class PROJECT:
     # AUX --------------------------------------------------
-    _VERSION_TEMPLATE: Tuple[int] = (0, 0, 1)
+    _VERSION_TEMPLATE: Tuple[int] = (0, 0, 2)
 
     # AUTHOR -----------------------------------------------
     AUTHOR_NAME: str = "Andrei Starichenko"
@@ -17,7 +17,10 @@ class PROJECT:
     KEYWORDS: List[str] = [
         "kw1",
     ]
-
+    CLASSIFIERS_TOPICS_ADD: List[str] = [
+        # "Topic :: Communications",
+        # "Topic :: Communications :: Email",
+    ]
     # GIT --------------------------------------------------
     DESCRIPTION_SHORT: str = "descr short (git/prg descr)"
 
