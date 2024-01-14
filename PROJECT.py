@@ -12,8 +12,8 @@ class PROJECT:
     AUTHOR_HOMEPAGE: str = "https://github.com/centroid457/"
 
     # PROJECT ----------------------------------------------
-    NAME_INSTALL: str = "prj-name"
     NAME_IMPORT: str = "prj_name"
+    NAME_INSTALL: str = NAME_IMPORT.replace("_", "-")
     KEYWORDS: List[str] = [
         "kw1",
     ]
