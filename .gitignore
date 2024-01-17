@@ -1,26 +1,31 @@
-# virtual env python
+# PYTHON ===================
+# virtual env --------------
 .venv/
 venv/
 env/
 
-# byte-compiled
+# byte-compiled ------------
 **/__pycache__/
 **/*.py[cod]
 
-# pycharm
+# pycharm ------------------
 .idea/
 
-# PYTEST
+# PYTEST -------------------
 **/.pytest_cache/
 
-# TEMP
-TEMPORARY/
--*
-
-# user saved data
-USERDATA/
-
-# DISTRIBUTION
+# PYPI DISTRIBUTION --------
 build/
 dist/
 *.egg-info/
+
+# USER =====================
+# TEMP ---------------------
+TEMPORARY/
+-*
+
+# user saved data ----------
+USERDATA/
+
+
+# ==========================
