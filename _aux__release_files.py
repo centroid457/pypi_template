@@ -154,7 +154,9 @@ class Readme(ReleaseFileBase):
         self._file_append_lines(LINES_EXAMPLES_START)
         self._file_append_lines()
 
-        files = [item for item in self.dirpath_examples.iterdir() if item.is_file()]
+        files = []
+        if self.dirpath_examples.exists():
+            files = [item for item in self.dirpath_examples.iterdir() if item.is_file()]
 
         for index, file in enumerate(files, start=1):
             LINES = [
