@@ -1,6 +1,7 @@
 # COMMON ===================
 pytest
 requirements-checker
+object-info
 
 # ========================================
 # SPECIAL FOR THIS PROJECT ---------------
