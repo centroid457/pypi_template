@@ -4,7 +4,7 @@
 Descr short (git/prg descr)
 
 ## DESCRIPTION_LONG
-designed for ...
+Designed for ...
 
 
 ## Features
