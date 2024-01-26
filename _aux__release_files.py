@@ -109,7 +109,7 @@ class Readme(ReleaseFileBase):
 
             f"",
             f"## DESCRIPTION_LONG",
-            f"{PROJECT.DESCRIPTION_LONG.capitalize().strip()}",
+            f"{PROJECT.DESCRIPTION_LONG.strip()}",
 
             *features,
 
