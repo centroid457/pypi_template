@@ -33,7 +33,7 @@ class ReleaseFileBase:
             lines = ""
         if isinstance(lines, str):
             lines = [lines, ]
-        with self.filepath.open("a") as fo_append:
+        with self.filepath.open("a", encoding="utf-8") as fo_append:        # use ALWAYSE
             for lines in lines:
                 fo_append.write(f"{lines}\n")
 
