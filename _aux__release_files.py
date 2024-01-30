@@ -7,6 +7,10 @@ from PROJECT import PROJECT
 
 
 # =====================================================================================================================
+VERSION = (0, 0, 1)   # keep russian lang by using utf-8
+
+
+# =====================================================================================================================
 class Exx_HistorySameVersionOrNews(Exception):
     pass
 
@@ -33,7 +37,7 @@ class ReleaseFileBase:
             lines = ""
         if isinstance(lines, str):
             lines = [lines, ]
-        with self.filepath.open("a", encoding="utf-8") as fo_append:        # use ALWAYSE
+        with self.filepath.open("a", encoding="utf-8") as fo_append:
             for lines in lines:
                 fo_append.write(f"{lines}\n")
 

@@ -1,3 +1,6 @@
+# ==========================
+# VERSION = (0, 0, 1)   # use build as broadcast/nested
+
 # PYTHON ===================
 # virtual env --------------
 .venv/
@@ -17,12 +20,18 @@ env/
 
 # PYPI DISTRIBUTION --------
 build/
+_build/
 dist/
+
+**/build/
+**/_build/
+**/dist/
+
 *.egg-info/
 
 # documentation ------------
-documentation/build/*
-documentation/source/_build/*
+#documentation/build/*
+#documentation/source/_build/*
 
 # some other ---------------
 htmlcov/
