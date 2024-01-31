@@ -7,7 +7,8 @@ from PROJECT import PROJECT
 
 
 # =====================================================================================================================
-VERSION = (0, 0, 1)   # keep russian lang by using utf-8
+# VERSION = (0, 0, 1)   # keep russian lang by using utf-8
+VERSION = (0, 0, 2)   # reuse utf8+ del all capitalizing()
 
 
 # =====================================================================================================================
@@ -37,7 +38,7 @@ class ReleaseFileBase:
             lines = ""
         if isinstance(lines, str):
             lines = [lines, ]
-        with self.filepath.open("a", encoding="utf-8") as fo_append:
+        with self.filepath.open("a", encoding="utf8") as fo_append:
             for lines in lines:
                 fo_append.write(f"{lines}\n")
 
@@ -109,7 +110,7 @@ class Readme(ReleaseFileBase):
 
             f"",
             f"## DESCRIPTION_SHORT",
-            f"{PROJECT.DESCRIPTION_SHORT.capitalize().strip()}",
+            f"{PROJECT.DESCRIPTION_SHORT.strip()}",
 
             f"",
             f"## DESCRIPTION_LONG",
