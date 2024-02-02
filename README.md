@@ -1,10 +1,10 @@
 # prj_name (v0.0.0)
 
 ## DESCRIPTION_SHORT
-Descr short (git/prg descr)
+descr short (git/prg descr)
 
 ## DESCRIPTION_LONG
-Designed for ...
+designed for ...
 
 
 ## Features
