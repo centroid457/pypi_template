@@ -1,5 +1,9 @@
 # ==========================
-# VERSION = (0, 0, 1)   # use build as broadcast/nested
+# VERSION = (0, 0, 1)#use build as broadcast/nested
+# VERSION = (0, 0, 2)#add BACKUPS + start HELP
+
+# HELP
+# (*.xyz) or the same (**/*.xyz) - in any nested directory!
 
 # PYTHON ===================
 # virtual env --------------
@@ -32,6 +36,9 @@ dist/
 # documentation ------------
 #documentation/build/*
 #documentation/source/_build/*
+
+# BACKUPS ------------------
+**/*.bkp
 
 # some other ---------------
 htmlcov/
