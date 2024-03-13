@@ -3,7 +3,14 @@
 # VERSION = (0, 0, 2)#add BACKUPS + start HELP
 
 # HELP
-# (*.xyz) or the same (**/*.xyz) - in any nested directory!
+# 1=NESTING
+# (*.xyz) or the same (**/*.xyz) - files in any nested directory!
+# (*xyz/) or the same (**/*xyz/) same as for directories
+# 2=CaseInsensitive!
+# (HELP) same as (help)!!! may be exists some flag for it!
+# 3=SLASH_ENDS not need but if used applyed only for directories!
+# (*xyz) - both for directories and files
+# (*xyz/) - only for directories
 
 # PYTHON ===================
 # virtual env --------------
@@ -12,24 +19,20 @@ venv/
 env/
 
 # byte-compiled ------------
-**/__pycache__/
-**/*.py[cod]
+__pycache__/
+*.py[cod]
 
 # IDE ----------------------
 .idea/
 .vscode/
 
 # PYTEST -------------------
-**/.pytest_cache/
+.pytest_cache/
 
 # PYPI DISTRIBUTION --------
 build/
 _build/
 dist/
-
-**/build/
-**/_build/
-**/dist/
 
 *.egg-info/
 
@@ -38,7 +41,7 @@ dist/
 #documentation/source/_build/*
 
 # BACKUPS ------------------
-**/*.bkp
+*.bkp
 
 # some other ---------------
 htmlcov/
@@ -55,7 +58,6 @@ TEMPORARY/
 
 # user saved data ----------
 USERDATA/
-
 # ========================================
 # SPECIAL FOR THIS PROJECT ---------------
 
