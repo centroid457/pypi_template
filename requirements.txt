@@ -1,6 +1,7 @@
 # ==========================
 # VERSION = (0, 0, 1)   # just add version
 # VERSION = (0, 0, 2)   # add funcs-aux
+# VERSION = (0, 0, 3)   # add block NESTED REQUIREMENTS
 
 # COMMON ===================
 pytest
@@ -9,6 +10,8 @@ object-info
 funcs-aux
 
 # ========================================
-# SPECIAL FOR THIS PROJECT ---------------
+# SPECIAL FOR THIS PROJECT - ROOT --------
+
+# NESTED ---------------------------------
 
 # ========================================
