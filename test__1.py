@@ -22,7 +22,11 @@ class Test__888888888888:
         pass
 
     def setup_method(self, method):
+        pass
         self.VICTIM = type("VICTIM", (NEW_CLASS____,), {})
+
+    def teardown_method(self, method):
+        pass
 
     # -----------------------------------------------------------------------------------------------------------------
     def test__ClassMethod_and_obj(self):
