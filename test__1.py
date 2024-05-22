@@ -16,6 +16,7 @@ class Test__888888888888:
     @classmethod
     def setup_class(cls):
         pass
+        cls.VICTIM = type("VICTIM", (NEW_CLASS____,), {})
 
     @classmethod
     def teardown_class(cls):
@@ -23,13 +24,12 @@ class Test__888888888888:
 
     def setup_method(self, method):
         pass
-        self.VICTIM = type("VICTIM", (NEW_CLASS____,), {})
 
     def teardown_method(self, method):
         pass
 
     # -----------------------------------------------------------------------------------------------------------------
-    def test__ClassMethod_and_obj(self):
+    def test__CREATEIT(self):
         assert True
 
 
