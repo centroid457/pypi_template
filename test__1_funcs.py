@@ -6,11 +6,12 @@ import shutil
 from tempfile import TemporaryDirectory
 from configparser import ConfigParser
 from pytest import mark
+from pytest_aux import pytest_parametrisation_tester
 
 
 # =====================================================================================================================
 # KEEP FILES IN ROOT! OR IMPORT PRJ_MODULE WOULD FROM SYSTEM! NOT THIS SOURCE!!!
-from PRJ_NEW__ import *
+# from PRJ_NEW__ import *
 
 
 # =====================================================================================================================
@@ -19,109 +20,40 @@ def func_example(arg1: Any, arg2: Any) -> str:
 
 
 # =====================================================================================================================
-@pytest.mark.parametrize(
-    argnames="p1,p2,_EXPECTED,_MARK",
-    argvalues=[
-        # TRIVIAL -------------
-        (1, None, "1None", None),
-        (1, 2, "12", None),
-
-        # LIST -----------------
-        (1, [], "1[]", None),
-
-        # MARKS -----------------
-        (1, 2, None, mark.skip),
-        (1, 2, None, mark.skipif(True)),
-        (1, 2, None, mark.skipif(False)),
-        (1, 2, None, mark.xfail),
-        (1, 2, "12", mark.xfail),
-    ]
-)
-def test__func_ONE(p1, p2, _EXPECTED, _MARK):
-    func_link = func_example
-    try:
-        value_actual = func_link(arg1=p1, arg2=p2)
-    except Exception as exx:
-        value_actual = exx
-
-    # MARKS -------------------------
-    print(f"{mark.skipif(True)=}")
-    if _MARK == mark.skip:
-        pytest.skip()
-    elif isinstance(_MARK, pytest.MarkDecorator) and _MARK.name == "skipif" and all(_MARK.args):
-        pytest.skip()
-    elif _MARK == mark.xfail:
-        assert value_actual != _EXPECTED
-    else:
-        assert value_actual == _EXPECTED
-
-
-# =====================================================================================================================
-def _FUNC_UNIVERSAL(func_link, args, kwargs, _EXPECTED, _MARK):
-    args = args or ()
-    kwargs = kwargs or {}
-
-    try:
-        actual_value = func_link(*args, **kwargs)
-    except Exception as exx:
-        actual_value = exx
-
-    # MARKS -------------------------
-    print(f"{mark.skipif(True)=}")
-    if _MARK == mark.skip:
-        pytest.skip("skip")
-    elif isinstance(_MARK, pytest.MarkDecorator) and _MARK.name == "skipif" and all(_MARK.args):
-        pytest.skip("skipIF")
-
-    if _MARK == mark.xfail:
-        if isinstance(_EXPECTED, Exception):
-            assert not isinstance(actual_value, _EXPECTED), "xfail"
-        else:
-            assert actual_value != _EXPECTED, "xfail"
-    else:
-
-
-        if isinstance(_EXPECTED, Exception):
-            assert isinstance(actual_value, _EXPECTED)
-        else:
-            assert actual_value == _EXPECTED
-
-
-# =====================================================================================================================
-@pytest.mark.parametrize(argnames="func_link", argvalues=[func_example, ])
-@pytest.mark.parametrize(
-    argnames="args, kwargs, _EXPECTED, _MARK",
-    argvalues=[
-        # TRIVIAL -------------
-        ((1, None), {}, "1None", None),
-        ((1, 2), {}, "12", None),
-
-        # LIST -----------------
-        ((1, []), {}, "1[]", None),
-
-        # MARKS -----------------
-        ((1, 2), {}, None, mark.skip),
-        ((1, 2), {}, None, mark.skipif(True)),
-        ((1, 2), {}, None, mark.skipif(False)),
-        ((1, 2), {}, None, mark.xfail),
-        ((1, 2), {}, "12", mark.xfail),
-    ]
-)
-def test__1(func_link, args, kwargs, _EXPECTED, _MARK):
-    _FUNC_UNIVERSAL(func_link, args, kwargs, _EXPECTED, _MARK)
-
-
-# =====================================================================================================================
 @pytest.mark.parametrize(argnames="func_link", argvalues=[int, ])
 @pytest.mark.parametrize(
-    argnames="args, kwargs, _EXPECTED, _MARK",
+    argnames="args, kwargs, _EXPECTED",
     argvalues=[
-        # (("1", ), {}, 1, None),
-        (("hello", ), {}, Exception, None),
+        (("1", ), {}, 1),
+        (("hello", ), {}, Exception),
     ]
 )
-def test__1(func_link, args, kwargs, _EXPECTED, _MARK):
-    _FUNC_UNIVERSAL(func_link, args, kwargs, _EXPECTED, _MARK)
+def test__short_variant(func_link, args, kwargs, _EXPECTED):
+    pytest_parametrisation_tester(func_link, args, kwargs, _EXPECTED)
+
+
+# =====================================================================================================================
+@pytest.mark.parametrize(
+    argnames="args, kwargs, _EXPECTED, _MARK, _COMMENT",
+    argvalues=[
+        # TRIVIAL -------------
+        ((1, None), {}, "1None", None, "ok"),
+        ((1, 2), {}, "12", None, "ok"),
+
+        # LIST -----------------
+        ((1, []), {}, "1[]", None, "ok"),
+
+        # MARKS -----------------
+        ((1, 2), {}, None, mark.skip, "skip"),
+        ((1, 2), {}, None, mark.skipif(True), "skip"),
+        ((1, 2), {}, "12", mark.skipif(False), "ok"),
+        ((1, 2), {}, None, mark.xfail, "ok"),
+        ((1, 2), {}, "12", mark.xfail, "SHOULD BE FAIL!"),
+    ]
+)
+@pytest.mark.parametrize(argnames="func_link", argvalues=[func_example, ])
+def test__long_variant(func_link, args, kwargs, _EXPECTED, _MARK, _COMMENT):
+    pytest_parametrisation_tester(func_link, args, kwargs, _EXPECTED, _MARK, _COMMENT)
 
 
 # =====================================================================================================================
