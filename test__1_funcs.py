@@ -57,16 +57,14 @@ def test__func_ONE(p1, p2, _EXPECTED, _MARK):
 
 
 # =====================================================================================================================
-def _FUNC_UNIVERSAL(func_link, args, kwargs, _EXPECTED, _EXX, _MARK):
+def _FUNC_UNIVERSAL(func_link, args, kwargs, _EXPECTED, _MARK):
     args = args or ()
     kwargs = kwargs or {}
-    actual__value = None
-    actual__exx = None
 
     try:
-        actual__value = func_link(*args, **kwargs)
+        actual_value = func_link(*args, **kwargs)
     except Exception as exx:
-        actual__exx = exx
+        actual_value = exx
 
     # MARKS -------------------------
     print(f"{mark.skipif(True)=}")
@@ -76,40 +74,54 @@ def _FUNC_UNIVERSAL(func_link, args, kwargs, _EXPECTED, _EXX, _MARK):
         pytest.skip("skipIF")
 
     if _MARK == mark.xfail:
-        if actual__exx:
-            return
-
-        if issubclass(_EXPECTED, Exception):
-            assert not isinstance(actual__value, _EXPECTED), "xfail"
+        if isinstance(_EXPECTED, Exception):
+            assert not isinstance(actual_value, _EXPECTED), "xfail"
         else:
-            assert actual__value != _EXPECTED, "xfail"
+            assert actual_value != _EXPECTED, "xfail"
     else:
-        if issubclass(_EXPECTED, Exception):
-            assert isinstance(actual__value, _EXPECTED)
-        else:
-            assert actual__value == _EXPECTED
 
+
+        if isinstance(_EXPECTED, Exception):
+            assert isinstance(actual_value, _EXPECTED)
+        else:
+            assert actual_value == _EXPECTED
+
+
+# =====================================================================================================================
 @pytest.mark.parametrize(argnames="func_link", argvalues=[func_example, ])
 @pytest.mark.parametrize(
-    argnames="args, kwargs, _EXPECTED, _EXX, _MARK",
+    argnames="args, kwargs, _EXPECTED, _MARK",
     argvalues=[
         # TRIVIAL -------------
-        ((1, None), {}, "1None", None, None),
-        ((1, 2), {}, "12", None, None),
+        ((1, None), {}, "1None", None),
+        ((1, 2), {}, "12", None),
 
         # LIST -----------------
-        ((1, []), {}, "1[]", None, None),
+        ((1, []), {}, "1[]", None),
 
         # MARKS -----------------
-        ((1, 2), {}, None, None, mark.skip),
-        ((1, 2), {}, None, None, mark.skipif(True)),
-        ((1, 2), {}, None, None, mark.skipif(False)),
-        ((1, 2), {}, None, None, mark.xfail),
-        ((1, 2), {}, "12", None, mark.xfail),
+        ((1, 2), {}, None, mark.skip),
+        ((1, 2), {}, None, mark.skipif(True)),
+        ((1, 2), {}, None, mark.skipif(False)),
+        ((1, 2), {}, None, mark.xfail),
+        ((1, 2), {}, "12", mark.xfail),
     ]
 )
-def test__1(func_link, args, kwargs, _EXPECTED, _EXX, _MARK):
-    _FUNC_UNIVERSAL(func_link, args, kwargs, _EXPECTED, _EXX, _MARK)
+def test__1(func_link, args, kwargs, _EXPECTED, _MARK):
+    _FUNC_UNIVERSAL(func_link, args, kwargs, _EXPECTED, _MARK)
+
+
+# =====================================================================================================================
+@pytest.mark.parametrize(argnames="func_link", argvalues=[int, ])
+@pytest.mark.parametrize(
+    argnames="args, kwargs, _EXPECTED, _MARK",
+    argvalues=[
+        # (("1", ), {}, 1, None),
+        (("hello", ), {}, Exception, None),
+    ]
+)
+def test__1(func_link, args, kwargs, _EXPECTED, _MARK):
+    _FUNC_UNIVERSAL(func_link, args, kwargs, _EXPECTED, _MARK)
 
 
 # =====================================================================================================================
