@@ -5,6 +5,7 @@ import pathlib
 import shutil
 from tempfile import TemporaryDirectory
 from configparser import ConfigParser
+from pytest_aux import *
 
 
 # =====================================================================================================================
@@ -35,6 +36,18 @@ class Test__888888888888:
     # -----------------------------------------------------------------------------------------------------------------
     def test__1(self):
         assert True
+
+    # -----------------------------------------------------------------------------------------------------------------
+    @pytest.mark.parametrize(argnames="func_link", argvalues=[int, ])
+    @pytest.mark.parametrize(
+        argnames="args, _EXPECTED",
+        argvalues=[
+            (("1",), 1),
+            (("hello",), Exception),
+        ]
+    )
+    def test__parametrized(self, func_link, args, _EXPECTED):
+        pytest_func_tester__no_kwargs(func_link, args, _EXPECTED)
 
 
 # =====================================================================================================================

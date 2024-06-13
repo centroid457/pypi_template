@@ -6,7 +6,7 @@ import shutil
 from tempfile import TemporaryDirectory
 from configparser import ConfigParser
 from pytest import mark
-from pytest_aux import pytest_parametrisation_tester
+from pytest_aux import *
 
 
 # =====================================================================================================================
@@ -24,12 +24,12 @@ def func_example(arg1: Any, arg2: Any) -> str:
 @pytest.mark.parametrize(
     argnames="args, kwargs, _EXPECTED",
     argvalues=[
-        (("1", ), {}, 1),
-        (("hello", ), {}, Exception),
+        (("1", ), 1),
+        (("hello", ), Exception),
     ]
 )
-def test__short_variant(func_link, args, kwargs, _EXPECTED):
-    pytest_parametrisation_tester(func_link, args, kwargs, _EXPECTED)
+def test__short_variant(func_link, args, _EXPECTED):
+    pytest_func_tester(func_link, args, _EXPECTED)
 
 
 # =====================================================================================================================
@@ -53,7 +53,7 @@ def test__short_variant(func_link, args, kwargs, _EXPECTED):
 )
 @pytest.mark.parametrize(argnames="func_link", argvalues=[func_example, ])
 def test__long_variant(func_link, args, kwargs, _EXPECTED, _MARK, _COMMENT):
-    pytest_parametrisation_tester(func_link, args, kwargs, _EXPECTED, _MARK, _COMMENT)
+    pytest_func_tester(func_link, args, kwargs, _EXPECTED, _MARK, _COMMENT)
 
 
 # =====================================================================================================================
