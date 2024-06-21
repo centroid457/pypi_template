@@ -12,7 +12,8 @@ from typing import *
 # VERSION = (0, 0, 3)   # detach dependence from importing PRJ
 # VERSION = (0, 0, 4)   # use LINE_CODE_QUATATION for examples
 # VERSION = (0, 0, 5)   # add BADGES block
-VERSION = (0, 0, 6)   # [BADGES] improve
+# VERSION = (0, 0, 6)   # [BADGES] improve
+VERSION = (0, 0, 7)   # [BADGES] separate TestLinWin
 
 
 # =====================================================================================================================
@@ -106,7 +107,9 @@ class ReleaseReadme(ReleaseFileBase):
             # -----------------
             f"![repo/Created](https://img.shields.io/github/created-at/{self.PROJECT.AUTHOR_NICKNAME_GITHUB}/{self.PROJECT.NAME_IMPORT})",
             f"![Commit/Last](https://img.shields.io/github/last-commit/{self.PROJECT.AUTHOR_NICKNAME_GITHUB}/{self.PROJECT.NAME_IMPORT})",
-            f"![Tests/GitHubWorkflowStatus](https://img.shields.io/github/actions/workflow/status/{self.PROJECT.AUTHOR_NICKNAME_GITHUB}/{self.PROJECT.NAME_IMPORT}/tests.yml?label=tests)  ",
+            # f"![Tests/GitHubWorkflowStatus](https://img.shields.io/github/actions/workflow/status/{self.PROJECT.AUTHOR_NICKNAME_GITHUB}/{self.PROJECT.NAME_IMPORT}/tests.yml)",
+            f"![Tests/GitHubWorkflowStatus](https://github.com/{self.PROJECT.AUTHOR_NICKNAME_GITHUB}/{self.PROJECT.NAME_IMPORT}/actions/workflows/test_linux.yml/badge.svg)",
+            f"![Tests/GitHubWorkflowStatus](https://github.com/{self.PROJECT.AUTHOR_NICKNAME_GITHUB}/{self.PROJECT.NAME_IMPORT}/actions/workflows/test_windows.yml/badge.svg)  ",
 
             # -----------------
             f"![repo/Size](https://img.shields.io/github/repo-size/{self.PROJECT.AUTHOR_NICKNAME_GITHUB}/{self.PROJECT.NAME_IMPORT})",
