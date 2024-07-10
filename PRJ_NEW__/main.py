@@ -15,6 +15,9 @@ class NEW_CLASS____:
     CREATED SPECIALLY FOR 
     ---------------------
 
+    NOTE
+    ----
+
     BEST USAGE
     ----------
 
