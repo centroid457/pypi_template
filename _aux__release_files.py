@@ -13,7 +13,8 @@ from typing import *
 # VERSION = (0, 0, 4)   # use LINE_CODE_QUATATION for examples
 # VERSION = (0, 0, 5)   # add BADGES block
 # VERSION = (0, 0, 6)   # [BADGES] improve
-VERSION = (0, 0, 7)   # [BADGES] separate TestLinWin
+# VERSION = (0, 0, 7)   # [BADGES] separate TestLinWin
+VERSION = (0, 0, 8)   # examples string add docstrings
 
 
 # =====================================================================================================================
@@ -187,7 +188,7 @@ class ReleaseReadme(ReleaseFileBase):
             f"",
             self.LINE_SEPARATOR_MAIN,
             f"## USAGE EXAMPLES",
-            f"See tests and sourcecode for other examples.",
+            f"See tests, sourcecode and docstrings for other examples.  ",
         ]
         self._file_append_lines(LINES_EXAMPLES_START)
         self._file_append_lines()
