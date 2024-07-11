@@ -14,7 +14,9 @@ class NEW_CLASS____:
 
     GOAL
     ----
-    
+    SAME AS:
+    DIFFERENCE:
+
     CREATED SPECIALLY FOR 
     ---------------------
 
