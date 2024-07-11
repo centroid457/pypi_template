@@ -29,6 +29,9 @@ class NEW_CLASS____:
     WHY NOT: 2?
     ----------
 
+    REFERENCE
+    ---------
+    
     """
     def meth(self):
         """
