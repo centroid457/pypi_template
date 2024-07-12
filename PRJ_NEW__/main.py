@@ -20,6 +20,9 @@ class NEW_CLASS____:
     CREATED SPECIALLY FOR 
     ---------------------
 
+    CONSTRAINTS
+    -----------
+
     BEST USAGE
     ----------
 
@@ -31,7 +34,7 @@ class NEW_CLASS____:
 
     REFERENCE
     ---------
-    
+
     """
     def meth(self):
         """
