@@ -6,6 +6,7 @@ from pytest import mark
 from pytest_aux import *
 
 from PRJ_NEW__ import *
+from PRJ_NEW__ import NEW_CLASS____
 
 
 # =====================================================================================================================

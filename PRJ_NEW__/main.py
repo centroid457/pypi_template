@@ -14,17 +14,20 @@ class NEW_CLASS____:
 
     GOAL
     ----
-    SAME AS:
-    DIFFERENCE:
 
     CREATED SPECIALLY FOR 
     ---------------------
+    REPLACE:
 
     CONSTRAINTS
     -----------
 
     BEST USAGE
     ----------
+
+    SAME AS/OTHER VARIANTS
+    ----------------------
+    DIFFERENCE:
 
     WHY NOT: 1?
     ----------
