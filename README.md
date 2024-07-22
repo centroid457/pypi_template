@@ -1,4 +1,15 @@
-# prj_name (v0.0.0)
+![Ver/TestedPython](https://img.shields.io/pypi/pyversions/prj_name)
+![Ver/Os](https://img.shields.io/badge/os_development-Windows-blue)  
+![repo/Created](https://img.shields.io/github/created-at/centroid457/prj_name)
+![Commit/Last](https://img.shields.io/github/last-commit/centroid457/prj_name)
+![Tests/GitHubWorkflowStatus](https://github.com/centroid457/prj_name/actions/workflows/test_linux.yml/badge.svg)
+![Tests/GitHubWorkflowStatus](https://github.com/centroid457/prj_name/actions/workflows/test_windows.yml/badge.svg)  
+![repo/Size](https://img.shields.io/github/repo-size/centroid457/prj_name)
+![Commit/Count/t](https://img.shields.io/github/commit-activity/t/centroid457/prj_name)
+![Commit/Count/y](https://img.shields.io/github/commit-activity/y/centroid457/prj_name)
+![Commit/Count/m](https://img.shields.io/github/commit-activity/m/centroid457/prj_name)
+
+# prj_name (current v0.0.0/![Ver/Pypi Latest](https://img.shields.io/pypi/v/prj_name?label=pypi%20latest))
 
 ## DESCRIPTION_SHORT
 descr short (git/prg descr)
@@ -37,26 +48,10 @@ from prj_name import *
 
 ********************************************************************************
 ## USAGE EXAMPLES
-See tests and sourcecode for other examples.
+See tests, sourcecode and docstrings for other examples.  
 
 ------------------------------
 ### 1. example1.py
-```python
-from PRJ_NEW__ import *
-
-
-# =====================================================================================================================
-if __name__ == "__main__":
-    NEW_CLASS____()
-
-
-# =====================================================================================================================
-
-print(NEW_CLASS____())
-```
-
-------------------------------
-### 2. example2.py
 ```python
 
 ```
