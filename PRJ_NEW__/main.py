@@ -15,6 +15,9 @@ class NEW_CLASS____:
     GOAL
     ----
 
+    USEFUL IDEAS
+    ------------
+
     CREATED SPECIALLY FOR 
     ---------------------
     REPLACE:
