@@ -29,7 +29,7 @@ funcs-aux
 singleton-meta
 
 # nested -------------------
-annot_attrs
+annot-attrs
 numpy
 
 # ========================================
