@@ -3,16 +3,18 @@
 #   from .main import *                 # INcorrect
 #   from .main import EXACT_OBJECTS     # CORRECT
 # VERSION = (0, 0, 2)   # del blank lines
+# VERSION = (0, 0, 3)   # separate all types/exx into static.py!
 
 
 # =====================================================================================================================
 # TEMPLATE
-# from .main import (
-#     # BASE
-#     EXACT_OBJECTS,
-#     # AUX
+# from .static import (
 #     # TYPES
 #     # EXX
+# )
+# from .main import (
+#     # BASE
+#     # AUX
 # )
 # ---------------------------------------------------------------------------------------------------------------------
 
